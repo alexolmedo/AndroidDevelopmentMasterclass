@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
                 String result = userInput.getText().toString();
                 result += "\n";
                 textView.append(result);
+                userInput.getText().clear();
             }
         };
         button.setOnClickListener(ourOnClickedListener);
