@@ -1,7 +1,6 @@
 package com.alexolmedo.buttonclickcounter;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -15,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText userInput;
     private TextView textView;
     private static final String TAG = "MainActivity";
+    private final String TEXT_CONTENTS = "TextContents";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         Log.d(TAG, "onRestoreInstanceState: in");
         super.onRestoreInstanceState(savedInstanceState);
+//        String saveString = savedInstanceState.getString(TEXT_CONTENTS);
+//        textView.setText(saveString);
+        textView.setText(savedInstanceState.getString(TEXT_CONTENTS));
         Log.d(TAG, "onRestoreInstanceState: out");
     }
 
@@ -71,9 +74,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-        Log.d(TAG, "onSaveInstanceState: int");
-        super.onSaveInstanceState(outState, outPersistentState);
+    protected void onSaveInstanceState(Bundle outState) {
+        Log.d(TAG, "onSaveInstanceState: in");
+        outState.putString(TEXT_CONTENTS, textView.getText().toString());
+        super.onSaveInstanceState(outState);
         Log.d(TAG, "onSaveInstanceState: out");
     }
 
