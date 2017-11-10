@@ -6,27 +6,15 @@ package com.alexolmedo.learnjava;
 
 public class HelloWorld {
     public static void main(String[] args) {
-        System.out.println("Hello World");
-        System.out.println("My first Java Program");
+        int lives = 3;
+        boolean isGameOver = (lives < 1);
+        System.out.println(isGameOver);
 
-        String alex;
-        alex = "Alexander Olmedo";
-        System.out.println(alex);
 
-        int alexWeeklySalary = 32;
-        int alexanderMonthlySalary = alexWeeklySalary * 4;
-        System.out.println("Weekly salary: " + alexWeeklySalary);
-        System.out.println("Monthly salary: " + alexanderMonthlySalary);
-
-        int apples = 6;
-        int oranges = 5;
-        int fruit = apples + oranges;
-        System.out.println("I have " + fruit + " fruits");
-
-        int weeks = 130;
-        double years = weeks / 52.0;
-        System.out.println(weeks + " weeks is " + years + " years");
-
-        System.out.println("Hello, " + alex + " here");
+        if(isGameOver) {
+            System.out.println("Game over!");
+        } else {
+            System.out.println("You're still alive");
+        }
     }
 }
