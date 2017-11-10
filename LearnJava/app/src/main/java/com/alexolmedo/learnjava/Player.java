@@ -5,9 +5,27 @@ package com.alexolmedo.learnjava;
  */
 
 public class Player {
-    String handleName;
-    int lives;
-    int level;
-    int score;
+    private String handleName;
+    private int lives;
+    private int level;
+    private int score;
 
+    public Player() {
+        handleName = "Unknown player";
+        lives = 3;
+        level = 1;
+        score = 0;
+    }
+
+    public String getHandleName() {
+        return handleName;
+    }
+
+    public void setHandleName(String handle) {
+        if (handle.length() < 3 ){
+            return;
+        } else {
+            handleName = handle;
+        }
+    }
 }
