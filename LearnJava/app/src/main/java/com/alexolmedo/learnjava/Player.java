@@ -11,9 +11,21 @@ public class Player {
     private int score;
 
     public Player() {
-        handleName = "Unknown player";
+        this("Unknown player");
+    }
+
+    public Player(String handle) {
+        this(handle, 1);
+//        handleName = handle;
+//        lives = 3;
+//        level = 1;
+//        score = 0;
+    }
+
+    public Player(String handle, int startingLevel) {
+        handleName = handle;
         lives = 3;
-        level = 1;
+        level = startingLevel;
         score = 0;
     }
 
@@ -27,5 +39,29 @@ public class Player {
         } else {
             handleName = handle;
         }
+    }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }
