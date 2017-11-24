@@ -12,7 +12,12 @@ public class Demo {
         System.out.println("Level: " + alex.getLevel());
         System.out.println("Lives: " + alex.getLives());
 //        System.out.println(alex.getWeapon().getName());
-        Weapon alexsWeapon = alex.getWeapon();
-        System.out.println(alexsWeapon.getName());
+//        Weapon alexsWeapon = alex.getWeapon();
+//        System.out.println(alexsWeapon.getName());
+        System.out.println(alex.getWeapon().getName());
+
+        Weapon myAxe = new Weapon("Goldshine Axe", 15, 50);
+        alex.setWeapon(myAxe);
+        System.out.println(alex.getWeapon().getName());
     }
 }
