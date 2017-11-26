@@ -7,25 +7,26 @@ package com.alexolmedo.learnjava;
 public class Demo {
 
     public static void main(String[] args) {
-        for(int i=0; i<10; i++) {
-            VampyreKing dracula = new VampyreKing("Dracula");
-            dracula.showInfo();
+        VampyreKing dracula = new VampyreKing("Dracula");
+        dracula.showInfo();
 
-            while(dracula.getLives() > 0) {
-                if(dracula.dodges()){
-                    continue;
-                }
+        dracula.setLives(0);
 
-                if(dracula.runAway()) {
-                    System.out.println("Dracula ran away");
-                    break;
-                } else {
-                    dracula.takeDamage(80);
-                    dracula.showInfo();
-                }
+        do {
+            if (dracula.dodges()) {
+                dracula.setLives(dracula.getLives()+1);
+                continue;
             }
-            System.out.println("============================================");
-        }
+
+            if (dracula.runAway()) {
+                System.out.println("Dracula ran away");
+                break;
+            } else {
+                dracula.takeDamage(80);
+                dracula.showInfo();
+            }
+        } while (dracula.getLives() > 0);
+        System.out.println("============================================");
 
 //        Player conan = new Player("Conan");
 //        conan.pickUpLoot(new Loot("Invisibility", LootType.POTION, 4));
