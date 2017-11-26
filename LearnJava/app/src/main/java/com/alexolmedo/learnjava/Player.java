@@ -45,7 +45,7 @@ public class Player {
     }
 
     public void setHandleName(String handle) {
-        if (handle.length() < 3 ){
+        if (handle.length() < 3) {
             System.out.println("The name " + handle + " is too short, must be 3 characters or more.");
             return;
         } else {
@@ -54,7 +54,7 @@ public class Player {
     }
 
     private void setDefaultWeapon() {
-        this.weapon = new Weapon("Sword", 10,20);
+        this.weapon = new Weapon("Sword", 10, 20);
     }
 
     public void setNameAndLevel(String name, int level) {
@@ -100,7 +100,7 @@ public class Player {
         return inventory;
     }
 
-//    public void setInventory(ArrayList<Loot> inventory) {
+    //    public void setInventory(ArrayList<Loot> inventory) {
 //        this.inventory = inventory;
 //    }
     public void pickUpLoot(Loot newLoot) {
@@ -111,6 +111,16 @@ public class Player {
         if (this.inventory.contains(loot)) {
             inventory.remove(loot);
             return true;
+        }
+        return false;
+    }
+
+    public boolean dropLoot(String lootName) {
+        for (Loot currentLoot : inventory) {
+            if(currentLoot.getName().equals(lootName)){
+                inventory.remove(currentLoot);
+                return true;
+            }
         }
         return false;
     }
@@ -126,7 +136,7 @@ public class Player {
         int total = 0;
 //        for(int i=0; i<inventory.size();i++) {
 //            Loot currentLoot = inventory.get(i);
-        for(Loot currentLoot : inventory) {
+        for (Loot currentLoot : inventory) {
             System.out.println(currentLoot.getName() + " is worth " + currentLoot.getValue());
             total += currentLoot.getValue();
         }
