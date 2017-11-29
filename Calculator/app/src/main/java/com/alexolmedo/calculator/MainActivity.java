@@ -83,8 +83,39 @@ public class MainActivity extends AppCompatActivity {
         buttonPlus.setOnClickListener(opListener);
     }
 
-    private void performOperation (String  value, String operation) {
-        displayOperation.setText(operation);
+    private void performOperation(String value, String operation) {
+        if (null == operand1) {
+            operand1 = Double.valueOf(value);
+        } else {
+            operand2 = Double.valueOf(value);
+            if (pendingOperation.equals("=")) {
+                pendingOperation = operation;
+            }
+            switch (pendingOperation) {
+                case "=":
+                    operand1 = operand2;
+                    break;
+                case "/":
+                    if (operand2 == 0) {
+                        operand1 = 0.0;
+                    } else {
+                        operand1 /= operand2;
+                    }
+                    break;
+                case "*":
+                    operand1 *= operand2;
+                    break;
+                case "-":
+                    operand1 -= operand2;
+                    break;
+                case "+":
+                    operand1 += operand2;
+                    break;
+            }
+        }
+        result.setText(operand1.toString());
+        newNumber.setText("");
+
     }
 
 }
