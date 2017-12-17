@@ -7,7 +7,6 @@ import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -23,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(TAG, "onCreate: starting Asynctask");
         DownloadData downloadData = new DownloadData();
-        downloadData.execute("URL goes here");
+        downloadData.execute("http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/topfreeapplications/limit=10/xml");
         Log.d(TAG, "onCreate: done");
 
     }
@@ -73,11 +72,13 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 reader.close();
+                return xmlResult.toString();
             } catch (MalformedURLException e ){
                 Log.e(TAG, "downloadXML: Invalid URL " + e.getMessage());
             } catch (IOException e) {
                 Log.d(TAG, "downloadXML: IO Exception reading data: " + e.getMessage());
             }
+            return null;
         }
     }
 
