@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             return rssFeed;
         }
 
-        private String downloadXML(String urlPath){
+        private String downloadXML(String urlPath) {
             StringBuilder xmlResult = new StringBuilder();
 
             try {
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 //                BufferedReader reader = new BufferedReader(inputStreamReader);
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
-                int  charsRead;
+                int charsRead;
                 char[] inputBuffer = new char[500];
                 while (true) {
                     charsRead = reader.read(inputBuffer);
@@ -68,15 +68,18 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     }
                     if (charsRead > 0) {
-                        xmlResult.append(String.copyValueOf(inputBuffer,0,charsRead));
+                        xmlResult.append(String.copyValueOf(inputBuffer, 0, charsRead));
                     }
                 }
                 reader.close();
                 return xmlResult.toString();
-            } catch (MalformedURLException e ){
+            } catch (MalformedURLException e) {
                 Log.e(TAG, "downloadXML: Invalid URL " + e.getMessage());
             } catch (IOException e) {
                 Log.d(TAG, "downloadXML: IO Exception reading data: " + e.getMessage());
+            } catch (SecurityException e) {
+                Log.e(TAG, "downloadXML: Security Exception. Needs permission? " + e.getMessage());
+//                e.printStackTrace();
             }
             return null;
         }
