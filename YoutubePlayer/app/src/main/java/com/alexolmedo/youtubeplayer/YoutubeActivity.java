@@ -2,6 +2,7 @@ package com.alexolmedo.youtubeplayer;
 
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
@@ -12,6 +13,7 @@ import com.google.android.youtube.player.YouTubePlayerView;
 
 public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
 
+    private static final String TAG = "YoutubeActivity";
     static final String GOOGLE_API_KEY = "AIzaSyDrMoZTe61OtSFmXxpaa4B2MCgffA3r6XA";
     static final String YOUTUBE_VIDEO_ID = "llv8BFB_k-A";
     static final String YOUTUBE_PLAYLIST = "PLbIZ6k-SE9Sj1Mj8X1rfFcGr8IZfEjPrB";
@@ -37,8 +39,13 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
     }
 
     @Override
-    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
+        Log.d(TAG, "onInitializationSuccess: provider is " + provider.getClass().toString());
+        Toast.makeText(this, "Initialized Youtube Player succesfully", Toast.LENGTH_SHORT).show();
 
+        if(!wasRestored){
+            youTubePlayer.cueVideo(YOUTUBE_VIDEO_ID);
+        }
     }
 
     @Override
